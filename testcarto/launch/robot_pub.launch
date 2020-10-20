@@ -1,0 +1,9 @@
+<launch>
+
+  <!-- Load the urdf into the parameter server. -->
+  <param name="robot_description" textfile="$(find ouster_description)/urdf/os1_sensor.urdf"/>
+  <!--param name="robot_description" textfile="$(find turtlebot3_description)/urdf/t3_waffle.urdf" />
+  <param name="robot_description" textfile="$(find husky_description)/urdf/husky.urdf" /!-->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+
+</launch>

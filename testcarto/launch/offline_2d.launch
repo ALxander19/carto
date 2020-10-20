@@ -1,0 +1,23 @@
+<launch>
+  <arg name="no_rviz" default="false"/>
+  <param name="/use_sim_time" value="true" />
+
+  <group unless="$(arg no_rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" required="true"
+        args="-d $(find testcarto)/config/demo_2d.rviz" />
+
+    <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+        type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
+  </group>
+
+  <node name="cartographer_offline_node" pkg="cartographer_ros"
+      required="$(arg no_rviz)"
+      type="cartographer_offline_node" args="
+          -configuration_directory $(find turtlebot3_slam)/config
+          -configuration_basenames t3_2d.lua
+          -urdf_filenames $(find turtlebot3_description)/urdf/t3_waffle.urdf
+          -bag_filenames $(arg bag_filenames)"
+      output="screen">
+    <remap from="echoes" to="scan" />
+  </node>
+</launch>
