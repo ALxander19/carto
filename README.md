@@ -1,10 +1,10 @@
 # carto
 
-# generamos el pbstream a partir del bag
+generamos el pbstream a partir del bag y luego el ply a partir de estos dos:
+```
 roslaunch testcarto offline_2d.launch bag_filenames:=${HOME}/sub.bag
-
-# generamos el ply a partir del bag y el pbstream
 roslaunch testcarto writer_2d.launch bag_filenames:=${HOME}/subset.bag pose_graph_filename:=${HOME}/subset.bag.pbstream
+```
 
 ######### HUSKY ##########
 
