@@ -1,6 +1,26 @@
 # carto
 
-generamos el pbstream a partir del bag y luego el ply a partir de estos dos:
+Crear un workspace
+```
+mkdir -p ros_ws/src
+cd ros_ws
+catkin_make
+source devel/setup.bash
+```
+
+Descargar el paquete carto:
+```
+cd ..
+cd ros_ws/src
+git clone https://github.com/ALxander19/carto.git
+```
+
+Instalar cartographer ros desde su repositorio oficial:
+```
+sudo apt-get install ros-melodic-cartographer ros-melodic-cartographer-ros ros-melodic-cartographer-msgs
+```
+
+Generamos el pbstream a partir del bag y luego el ply a partir de estos dos:
 ```
 roslaunch testcarto offline_2d.launch bag_filenames:=${HOME}/sub.bag
 roslaunch testcarto writer_2d.launch bag_filenames:=${HOME}/subset.bag pose_graph_filename:=${HOME}/subset.bag.pbstream
