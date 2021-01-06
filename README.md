@@ -1,14 +1,14 @@
-# carto
+# Cartographer con la data de OS1-16
 
 Crear un workspace
 ```
 mkdir -p ros_ws/src
 cd ros_ws
 catkin_make
-source devel/setup.bash
+source ~/ros_ws/devel/setup.bash
 ```
 
-Descargar el paquete carto:
+Descargar el paquete testcarto:
 ```
 cd ..
 cd ros_ws/src
@@ -22,6 +22,7 @@ sudo apt-get install ros-melodic-cartographer ros-melodic-cartographer-ros ros-m
 
 Generamos el pbstream a partir del bag y luego el ply a partir de estos dos:
 ```
+source ~/ros_ws/devel/setup.bash
 roslaunch testcarto offline_2d.launch bag_filenames:=${HOME}/sub.bag
 roslaunch testcarto writer_2d.launch bag_filenames:=${HOME}/subset.bag pose_graph_filename:=${HOME}/subset.bag.pbstream
 ```
@@ -60,6 +61,7 @@ rosrun xacro xacro example.urdf.xacro > os1_sensor.urdf
 
 generamos el pbstream a partir del bag y luego el ply a partir de estos dos:
 ```
+source ~/ros_ws/devel/setup.bash
 roslaunch testcarto offline_cart_3d.launch bag_filenames:=${HOME}/primervuelo.bag
 roslaunch testcarto assets_writer_cart_3d.launch bag_filenames:=${HOME}/primervuelo.bag pose_graph_filename:=${HOME}/primervuelo.bag.pbstream
 ```
@@ -72,3 +74,22 @@ cartographer_rosbag_validate -bag_filename primervuelo.bag
 rosbag record -O subset /velodyne_points /imu __name:=qaira
 rosnode kill /qaira
 ```
+
+# LOAM con la data de OS1-16
+
+Clonar el repositorio e instanciar el paquete:
+```
+cd
+cd ros_ws/src
+git clone https://github.com/laboshinl/loam_velodyne
+cd ..
+source ~/ros_ws/devel/setup.bash
+catkin_make
+```
+
+Ejecutar el loam:
+```
+roslaunch loam_velodyne loam_velodyne.launch
+rosbag play ~/Downloads/velodyne.bag 
+```
+
