@@ -17,7 +17,7 @@ git clone https://github.com/ALxander19/carto.git
 
 Instalar cartographer ros desde su repositorio oficial:
 ```
-sudo apt-get install ros-melodic-cartographer ros-melodic-cartographer-ros ros-melodic-cartographer-msgs
+sudo apt-get install ros-melodic-cartographer ros-melodic-cartographer-ros ros-melodic-cartographer-ros-msgs
 ```
 
 Generamos el pbstream a partir del bag y luego el ply a partir de estos dos:
